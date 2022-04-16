@@ -1,8 +1,8 @@
 > If you see this section, you've just created a repository using [PoC Innovation's Open-Source project template](https://github.com/PoCInnovation/open-source-project-template). Check the [getting started guide](./.github/getting-started.md).
 
-# [PROJECT'S NAME]
+# SpaceVector
 
-[Project's description]
+SpaceVector is a platform for semantic search on satellite images using state of the art AI. It aims to support the use of satellite images.
 
 ## How does it work?
 
@@ -31,11 +31,11 @@ If you're interested in how the project is organized at a higher level, please c
 ## Our PoC team :heart:
 
 Developers
-| [<img src="https://github.com/MrZalTy.png?size=85" width=85><br><sub>[Developer's name]</sub>](https://github.com/MrZalTy) | [<img src="https://github.com/MrZalTy.png?size=85" width=85><br><sub>[Developer's name]</sub>](https://github.com/MrZalTy) | [<img src="https://github.com/MrZalTy.png?size=85" width=85><br><sub>[Developer's name]</sub>](https://github.com/MrZalTy)
+| [<img src="https://github.com/LayBraid.png?size=85" width=85><br><sub>Clément Loeuillet</sub>](https://github.com/LayBraid) | [<img src="https://github.com/LucasBenhaim.png?size=85" width=85><br><sub>Lucas Benhaim</sub>](https://github.com/LucasBenhaim | [<img src="https://github.com/axel-denis.png?size=85" width=85><br><sub>Axel Denis</sub>](https://github.com/axel-denis)
 | :---: | :---: | :---: |
 
 Manager
-| [<img src="https://github.com/adrienfort.png?size=85" width=85><br><sub>[Manager's name]</sub>](https://github.com/adrienfort)
+| [<img src="https://github.com/Mikatech.png?size=85" width=85><br><sub>Mikaël Vallenet</sub>](https://github.com/Mikatech)
 | :---: |
 
 <h2 align=center>
