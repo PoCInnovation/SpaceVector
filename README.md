@@ -1,6 +1,4 @@
-> If you see this section, you've just created a repository using [PoC Innovation's Open-Source project template](https://github.com/PoCInnovation/open-source-project-template). Check the [getting started guide](./.github/getting-started.md).
-
-# SpaceVector
+# SpaceVector :rocket:
 
 SpaceVector is a platform for semantic search on satellite images using state of the art AI. It aims to support the use of satellite images.
 
