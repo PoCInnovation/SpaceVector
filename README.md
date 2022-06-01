@@ -28,7 +28,7 @@ If you're interested in how the project is organized at a higher level, please c
 
 ## Our PoC team :heart:
 
-Developers
+Developer
 | [<img src="https://github.com/LayBraid.png?size=85" width=85><br><sub>Clément Loeuillet</sub>](https://github.com/LayBraid)
 | :---: |
 
