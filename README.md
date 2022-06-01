@@ -29,8 +29,8 @@ If you're interested in how the project is organized at a higher level, please c
 ## Our PoC team :heart:
 
 Developers
-| [<img src="https://github.com/LayBraid.png?size=85" width=85><br><sub>Clément Loeuillet</sub>](https://github.com/LayBraid) | [<img src="https://github.com/axel-denis.png?size=85" width=85><br><sub>Axel Denis</sub>](https://github.com/axel-denis)
-| :---: | :---: |
+| [<img src="https://github.com/LayBraid.png?size=85" width=85><br><sub>Clément Loeuillet</sub>](https://github.com/LayBraid)
+| :---: |
 
 Manager
 | [<img src="https://github.com/Mikatech.png?size=85" width=85><br><sub>Mikaël Vallenet</sub>](https://github.com/Mikatech)
