@@ -2,7 +2,6 @@ import os
 
 import numpy as np
 from PIL import Image
-from matplotlib import pyplot as plt
 from pymilvus import CollectionSchema, FieldSchema, DataType, Collection, connections
 from tqdm import tqdm
 from transformers import CLIPProcessor, CLIPModel
@@ -43,22 +42,6 @@ class App:
                 img = np.array(img.detach())
                 img = img.reshape(1, -1)
                 mr = self.collection.insert([img])
-
-
-def show_results(query, results, distances):
-    fig_query, ax_query = plt.subplots(1, 1, figsize=(5, 5))
-    ax_query.imshow(Image.open(query))
-    ax_query.axis('off')
-    ax_query.set_title("Searched Image")
-
-    res_count = len(results)
-    fig, ax = plt.subplots(1, res_count, figsize=(10, 10))
-    for x in range(res_count):
-        ax[x].imshow(Image.open(results[x]))
-        ax[x].axis('off')
-        dist = str(distances[x])
-        dist = dist[0:dist.find('.') + 4]
-        ax[x].set_title("D: " + dist)
 
 
 def main():
