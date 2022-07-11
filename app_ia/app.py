@@ -15,7 +15,6 @@ def connect_db():
 class App:
     def __init__(self):
         connect_db()
-        self.subfolders = None
         self.collection_name = "SpaceVectorData"
         self.dim = 512
         self.default_fields = [
@@ -30,17 +29,15 @@ class App:
         self.collection.create_index(field_name="vector", index_params=self.default_index)
         self.collection.load()
 
-        self.data_dir = "./data/"
-        self.data_dir_full = "./data/images/"
-        self.pattern = "*.jpg"
+        self.data_dir = "./data/images/"
 
         self.model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
         self.processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 
     def upload_data(self):
-        for filename in tqdm(os.listdir(self.data_dir_full)):
+        for filename in tqdm(os.listdir(self.data_dir)):
             if filename.endswith(".jpg"):
-                img = Image.open(os.path.join(self.data_dir_full, filename))
+                img = Image.open(os.path.join(self.data_dir, filename))
                 input_ids = self.processor(text=None, images=img, return_tensors="pt", padding=True)
                 img = self.model.get_image_features(**input_ids)
                 img = np.array(img.detach())
