@@ -1,0 +1,5 @@
+transformers==4.19.4
+jax
+jaxlib
+flax
+Pillow==9.0.1
