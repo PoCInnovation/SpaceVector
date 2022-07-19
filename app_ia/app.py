@@ -18,7 +18,8 @@ class App:
         self.dim = 512
         self.default_fields = [
             FieldSchema(name="id", dtype=DataType.INT64, is_primary=True, auto_id=True),
-            FieldSchema(name="vector", dtype=DataType.FLOAT_VECTOR, dim=self.dim)
+            FieldSchema(name="vector", dtype=DataType.FLOAT_VECTOR, dim=self.dim),
+            FieldSchema(name="path", dtype=DataType.STRING)
         ]
         self.default_schema = CollectionSchema(fields=self.default_fields, description="Image data")
 
@@ -41,14 +42,14 @@ class App:
                 img = self.model.get_image_features(**input_ids)
                 img = np.array(img.detach())
                 img = img.reshape(1, -1)
-                mr = self.collection.insert([img])
+                mr = self.collection.insert([img, filename])
 
 
 def main():
     print(f"Prepare App...")
     app = App()
 
-    # app.upload_data()
+    app.upload_data()
 
     search_params = {"metric_type": "L2", "params": {"nprobe": 10}}
 
@@ -70,7 +71,7 @@ def main():
     print(f"- Top1 hit id: {hits[0].id}, distance: {hits[0].distance}, score: {hits[0].score} ")
 
     query_result = app.collection.query(expr="id ==" + str(hits[0].id),
-                                        output_fields=["vector"],
+                                        output_fields=["vector", "path"],
                                         consistency_level="Strong")
     print(f"\n\n\n")
     print(f"- Query result:\n{query_result}")
