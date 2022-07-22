@@ -1,10 +1,14 @@
 import os
+from typing import Union
 
 import numpy as np
 from PIL import Image
 from pymilvus import CollectionSchema, FieldSchema, DataType, Collection, connections
 from tqdm import tqdm
 from transformers import CLIPProcessor, CLIPModel
+from fastapi import FastAPI
+
+backend = FastAPI()
 
 
 def connect_db():
@@ -45,15 +49,19 @@ class App:
                 mr = self.collection.insert([img, filename])
 
 
-def main():
-    print(f"Prepare App...")
-    app = App()
+print(f"Prepare App...")
+app = App()
 
-    app.upload_data()
+# app.upload_data()
 
-    search_params = {"metric_type": "L2", "params": {"nprobe": 10}}
+search_params = {"metric_type": "L2", "params": {"nprobe": 10}}
 
-    inputs = app.processor(text=["A airport"], images=None, return_tensors="pt", padding=True)
+
+@backend.get("/query/{text}")
+async def read_user_item(text: str, q: Union[str] = None, short: bool = False):
+    item = {"text": str}
+
+    inputs = app.processor(text=[item], images=None, return_tensors="pt", padding=True)
 
     vector = app.model.get_text_features(**inputs)
     vector = np.array(vector.detach())
@@ -77,7 +85,4 @@ def main():
     print(f"- Query result:\n{query_result}")
 
     app.collection.release()
-
-
-if __name__ == "__main__":
-    main()
+    return query_result
