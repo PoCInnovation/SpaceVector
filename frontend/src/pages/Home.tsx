@@ -75,11 +75,10 @@ const Title = styled(Typography)(() => ({
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   letterSpacing: 5,
-  marginLeft: -40,
 }));
 
 const Subtitle = styled(Typography)(() => ({
-  marginLeft: 40,
+  marginLeft: 80,
   marginTop: -40,
   fontSize: 32,
   background: "-webkit-linear-gradient(-45deg, #F2A282 7%, #F56565 50%)",
