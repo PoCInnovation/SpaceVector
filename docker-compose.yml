@@ -44,7 +44,7 @@ services:
 
   frontend:
     container_name: frontend
-    image: spacevector-front:dev
+    image: spacevector-front:prod
     volumes:
       - .:/app
     ports:
