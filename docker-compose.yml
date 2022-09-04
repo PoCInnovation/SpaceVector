@@ -1,5 +1,4 @@
-version: "1"
-
+version: "2"
 services:
   etcd:
     container_name: milvus-etcd
@@ -49,6 +48,16 @@ services:
       - .:/app
     ports:
       - "3000:3000"
+  backend:
+    container_name: backend
+    image: spacevector-back:prod
+    volumes:
+      - .:/app
+    ports:
+      - "8080:1212"
+    depends_on:
+      - "frontend"
+      - "standalone"
 
 
 networks:

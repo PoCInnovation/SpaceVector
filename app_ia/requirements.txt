@@ -1,5 +1,6 @@
 transformers==4.19.4
+fastapi
+pymilvus==2.1.0
 jax
-jaxlib
 flax
 Pillow==9.0.1
