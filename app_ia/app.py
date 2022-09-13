@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 
@@ -7,6 +8,9 @@ from pymilvus import CollectionSchema, FieldSchema, DataType, Collection, connec
 from tqdm import tqdm
 from transformers import CLIPProcessor, CLIPModel
 from fastapi import FastAPI
+import os.path
+from google.protobuf.json_format import MessageToJson
+from os import path
 
 backend = FastAPI()
 
@@ -27,17 +31,44 @@ collection.create_index(field_name="vector", index_params=default_index)
 collection.load()
 
 
+def validate_json(json_data):
+    try:
+        json.loads(json_data)
+    except ValueError as err:
+        return False
+    return True
+
+
 def upload_data():
-    data_dir = "./data/images/"
-    for filename in tqdm(os.listdir(data_dir)):
-        if filename.endswith(".jpg"):
-            img = Image.open(os.path.join(data_dir, filename))
-            input_ids = processor(text=None, images=img, return_tensors="pt", padding=True)
-            img = model.get_image_features(**input_ids)
-            img = np.array(img.detach())
-            img = img.reshape(1, -1)
-            rm = collection.insert([img])
-            print(rm)
+    template = open("data/template.json", "r")
+    exits = path.exists("data/elements_list.json")
+    if exits:
+        with open("data/elements_list.json", "r") as f:
+            file_content = f.read()
+            if not validate_json(file_content):
+                os.remove("data/elements_list.json")
+                exits = False
+
+    if not exits:
+        data = json.loads(template.read())
+    else:
+        with open("data/elements_list.json", "r") as f:
+            data = json.loads(f.read())
+
+    with open("data/elements_list.json", "w") as elements_file:
+
+        data_dir = "./data/images/"
+        for filename in tqdm(os.listdir(data_dir)):
+            if filename.endswith(".jpg"):
+                img = Image.open(os.path.join(data_dir, filename))
+                input_ids = processor(text=None, images=img, return_tensors="pt", padding=True)
+                img = model.get_image_features(**input_ids)
+                img = np.array(img.detach())
+                img = img.reshape(1, -1)
+                rm = collection.insert([img])
+                data.append({"id": rm.primary_keys[0], "path": data_dir + filename})
+
+        json.dump(data, elements_file, indent=4, separators=(',', ': '))
 
 
 model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
