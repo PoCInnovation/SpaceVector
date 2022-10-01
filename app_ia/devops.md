@@ -2,7 +2,7 @@
 build image
 
 ```
-docker build -t spacevector-back:dev . 
+docker build -t spacevector-back:prod . 
 ```
 
 run container

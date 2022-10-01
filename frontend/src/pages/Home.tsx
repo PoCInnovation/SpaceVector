@@ -3,6 +3,7 @@ import Picks from "../assets/img/picks.png";
 import Blur1 from "../assets/img/blur1.png";
 import Blur2 from "../assets/img/blur2.png";
 import Blur3 from "../assets/img/blur3.png";
+import Research from "../components/Research";
 
 const PageGlobal = styled("div")(() => ({
   backgroundImage: `url(${Picks})`,
@@ -74,7 +75,7 @@ const Title = styled(Typography)(() => ({
   background: "-webkit-linear-gradient(-45deg, #ED64A6 7%, #F56565 50%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
-  letterSpacing: 5,
+  letterSpacing: 3,
 }));
 
 const Subtitle = styled(Typography)(() => ({
@@ -126,6 +127,9 @@ function Home() {
           <Title>SpaceVector</Title>
           <Subtitle>Satellite image semantic search engine</Subtitle>
         </Header>
+
+        <Research/>
+
       </PageContent>
 
       <Footer>

@@ -1,7 +1,6 @@
 import json
 import os
 import sys
-
 import numpy as np
 from PIL import Image
 from pymilvus import CollectionSchema, FieldSchema, DataType, Collection, connections
@@ -9,12 +8,14 @@ from tqdm import tqdm
 from transformers import CLIPProcessor, CLIPModel
 from fastapi import FastAPI
 import os.path
-from google.protobuf.json_format import MessageToJson
 from os import path
+import base64
 
-backend = FastAPI()
+print("Starting app...")
 
-connections.connect("default", host="localhost", port="19530")
+app = FastAPI()
+
+connections.connect("default", host="milvus-standalone", port="19530")
 
 collection_name = "SpaceVectorData"
 dim = 512
@@ -81,34 +82,29 @@ if len(sys.argv) > 1:
 search_params = {"metric_type": "L2", "params": {"nprobe": 10}}
 
 
-@backend.get("/query/")
-async def read_user_item():
-    params = "pool"
+@app.get("/query/{words}", response_model=list)
+async def read_user_item(words: str):
 
-    print(f"Query: {params}")
+    print(f"Query: {words}")
 
-    inputs = processor(text=params, images=None, return_tensors="pt", padding=True)
+    inputs = processor(text=words, images=None, return_tensors="pt", padding=True)
 
     vector = model.get_text_features(**inputs)
     vector = np.array(vector.detach())
     vector = vector.reshape(1, -1)
 
-    print("Searching...")
-    results = collection.search(data=vector,
-                                anns_field="vector",
-                                param=search_params,
-                                limit=1)
+    results = collection.search(data=vector, anns_field="vector", param=search_params, limit=5)
 
-    hits = results[0]
-    print(f"\n\n\n")
-    print(f"- Total hits: {len(hits)}, hits ids: {hits.ids} ")
-    print(f"- Top1 hit id: {hits[0].id}, distance: {hits[0].distance}, score: {hits[0].score} ")
+    response = []
 
-    query_result = collection.query(expr="id ==" + str(hits[0].id),
-                                    output_fields=["vector"],
-                                    consistency_level="Strong")
-    print(f"\n\n\n")
-    print(f"- Query result:\n{query_result}")
+    with open("data/elements_list.json", "r") as f:
+        data = json.loads(f.read())
+        for i in range(len(results[0])):
+            for element in data:
+                if element["id"] == results[0][i].id:
+                    with open(element["path"], "rb") as image:
+                        content = image.read()
+                        base64_bytes = base64.b64encode(content)
+                        response.append({"id": element["id"], "path": element["path"], "image": base64_bytes})
 
-    collection.release()
-    return query_result
+    return response
