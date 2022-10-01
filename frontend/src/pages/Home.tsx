@@ -4,6 +4,7 @@ import Blur1 from "../assets/img/blur1.png";
 import Blur2 from "../assets/img/blur2.png";
 import Blur3 from "../assets/img/blur3.png";
 import Research from "../components/Research";
+import Information from "../components/Information";
 
 const PageGlobal = styled("div")(() => ({
   backgroundImage: `url(${Picks})`,
@@ -53,10 +54,9 @@ const SecondBlur = styled("div")(() => ({
 }));
 
 const ThirdBlur = styled("div")(() => ({
-  position: "absolute",
-  top: "calc(140vh - 600px)",
-  left: -450,
-  gridColumn: "c",
+  marginTop: -400,
+  marginLeft: -400,
+  zIndex: -1,
   height: 600,
   width: 1248,
   backgroundImage: `url(${Blur3})`,
@@ -88,7 +88,6 @@ const Subtitle = styled(Typography)(() => ({
 }));
 
 const Footer = styled("div")(() => ({
-  zIndex: 1,
   width: "100vw",
   height: 60,
   backgroundColor: "#FFFFFFCC",
@@ -114,12 +113,14 @@ const Cr = styled(Typography)(() => ({
 }));
 
 function Home() {
+
+  const year = new Date().getFullYear();
+
   return (
     <PageGlobal>
       <BlurContent>
         <FirstBlur/>
         <SecondBlur/>
-        <ThirdBlur/>
       </BlurContent>
 
       <PageContent>
@@ -130,10 +131,13 @@ function Home() {
 
         <Research/>
 
+        <Information />
+
       </PageContent>
 
+      <ThirdBlur/>
       <Footer>
-        <FooterText>SpaceVector</FooterText><Cr>©</Cr>
+        <FooterText>SpaceVector - {year}</FooterText><Cr>©</Cr>
       </Footer>
     </PageGlobal>
   );

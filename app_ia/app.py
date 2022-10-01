@@ -7,6 +7,7 @@ from pymilvus import CollectionSchema, FieldSchema, DataType, Collection, connec
 from tqdm import tqdm
 from transformers import CLIPProcessor, CLIPModel
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import os.path
 from os import path
 import base64
@@ -14,6 +15,14 @@ import base64
 print("Starting app...")
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 connections.connect("default", host="milvus-standalone", port="19530")
 
@@ -93,7 +102,7 @@ async def read_user_item(words: str):
     vector = np.array(vector.detach())
     vector = vector.reshape(1, -1)
 
-    results = collection.search(data=vector, anns_field="vector", param=search_params, limit=5)
+    results = collection.search(data=vector, anns_field="vector", param=search_params, limit=9)
 
     response = []
 
