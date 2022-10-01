@@ -42,7 +42,6 @@ services:
       - "etcd"
       - "minio"
 
-
   backend:
     container_name: backend
     image: spacevector-back:prod
@@ -52,6 +51,18 @@ services:
       - "1212:1212"
     depends_on:
       - "standalone"
+      - "minio"
+      - "etcd"
+
+  frontend:
+    container_name: frontend
+    image: spacevector-front:prod
+    volumes:
+      - .:/frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "backend"
 
 
 networks:
