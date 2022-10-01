@@ -1,0 +1,8 @@
+transformers==4.19.4
+fastapi>=0.68.0,<0.69.0
+uvicorn>=0.15.0,<0.16.0
+pymilvus==2.1.0
+jax
+flax
+Pillow==9.0.1
+google
