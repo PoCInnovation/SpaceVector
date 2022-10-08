@@ -4,6 +4,7 @@ WORKDIR /src
 
 COPY ./requirements.txt /code/requirements.txt
 
+RUN apt install uvicorn
 RUN pip3 install jax --user
 RUN pip3 install --no-cache-dir --upgrade -r /code/requirements.txt --user
 RUN pip3 install "uvicorn[standard]" --user
