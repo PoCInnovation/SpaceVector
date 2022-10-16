@@ -4,7 +4,21 @@ SpaceVector is a platform for semantic search on satellite images using state of
 
 ## How does it work?
 
-[Explain how this project is working]
+### How to [SpaceVector](https://spacevector.laybraid.fr/) works ?
+
+When you make a query, the system embed you text with OpenAI Clip text encoder. Then, it search the most similar images in the vector database. The images are embed with OpenAI Clip image encoder. The system return the most similar images.
+
+The majority images come from the [EuroSat](https://github.com/phelber/EuroSAT) dataset. The dataset contains 27,000 labeled images of 10 classes. The images are 64x64 pixels and are in the RGB format. The classes are:
+- Annual Crop
+- Forest
+- Herbaceous Vegetation
+- Highway
+- Industrial
+- Pasture
+- Permanent Crop
+- Residential
+- River
+- Sea/Lake
 
 ## Getting Started
 
