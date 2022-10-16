@@ -7,6 +7,7 @@ import Research from "../components/Research";
 import Information from "../components/Information";
 
 const PageGlobal = styled("div")(() => ({
+  backgroundColor: "white",
   backgroundImage: `url(${Picks})`,
   minHeight: "140vh",
   flexGrow: 1,
