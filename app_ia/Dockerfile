@@ -6,9 +6,10 @@ COPY ./requirements.txt /code/requirements.txt
 
 RUN python3 -m venv SpaceVector
 
-RUN ls -laR SpaceVector
+RUN ls -la SpaceVector
+RUN ls -la SpaceVector/bin
 
-RUN source SpaceVector/bin/activate
+RUN source ./SpaceVector/bin/activate.csh
 
 RUN pip install --upgrade pip
 
