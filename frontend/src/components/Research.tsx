@@ -75,6 +75,7 @@ const ResultImage = styled("img")(() => ({
 
 const ResultItem = styled("div")(() => ({
   padding: 15,
+  zIndex: 1,
   "&:hover": {
     transform: "scale(1.03)",
     transition: "transform 0.2s",
