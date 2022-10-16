@@ -4,13 +4,11 @@ WORKDIR /src
 
 RUN groupadd grp && useradd SpaceVector && usermod -aG grp SpaceVector
 
-RUN mkdir /code && chown -R SpaceVector:grp /code
+RUN mkdir /code && chown -R SpaceVector:grp /code && chown -R SpaceVector:grp /src
 
 USER SpaceVector
 
 COPY ./requirements.txt /code/requirements.txt
-
-RUN source my-env/bin/activate
 
 RUN pip install --upgrade pip
 
