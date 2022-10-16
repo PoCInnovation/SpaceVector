@@ -6,6 +6,8 @@ COPY ./requirements.txt /code/requirements.txt
 
 RUN python3 -m venv SpaceVector
 
+RUN ls -laR SpaceVector
+
 RUN source SpaceVector/bin/activate
 
 RUN pip install --upgrade pip
