@@ -4,13 +4,6 @@ WORKDIR /src
 
 COPY ./requirements.txt /code/requirements.txt
 
-RUN python3 -m venv SpaceVector
-
-RUN ls -la SpaceVector
-RUN ls -la SpaceVector/bin
-
-RUN source SpaceVector/bin/activate.fish
-
 RUN pip install --upgrade pip
 
 RUN pip3 install jax --user
