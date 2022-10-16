@@ -16,7 +16,7 @@ USER SpaceVector
 
 COPY ./requirements.txt /code/requirements.txt
 
-RUN pip install --upgrade pip
+RUN pip3 install --upgrade pip
 
 RUN pip3 install --no-cache-dir --upgrade -r /code/requirements.txt --user
 RUN pip3 install jax --user
@@ -28,4 +28,4 @@ RUN pip3 install torch torchvision --user
 
 COPY . /src
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python3", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
