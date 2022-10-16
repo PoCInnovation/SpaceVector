@@ -1,4 +1,4 @@
-cd /src/frontend
+cd ../frontend
 docker build -t spacevector-front:prod .
-cd /src
+cd ..
 docker-compose up -d
