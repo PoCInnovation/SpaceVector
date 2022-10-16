@@ -14,8 +14,6 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> \
 RUN mkdir /code && \
     chown -R SpaceVector:sudo /code && \
     chown -R SpaceVector:sudo /src && \
-    mkdir /home/SpaceVector && \
-    chown -R SpaceVector:sudo /home/SpaceVector
 
 USER SpaceVector
 
