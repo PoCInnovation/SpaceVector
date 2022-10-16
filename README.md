@@ -10,15 +10,21 @@ SpaceVector is a platform for semantic search on satellite images using state of
 
 ### Installation
 
-[Explain how to install all of the project's dependencies]
+For this project, you need to have [Python](https://www.python.org/downloads/) installed on your computer.
+
+You need docker and docker-compose to run the project.
 
 ### Quickstart
 
-[Explain how to run this project]
+For running the project, you need to run the following command:
+
+```bash
+docker-compose up
+```
 
 ### Usage
 
-[Explain how to use this project]
+After you launch the docker compose, you can access the frontend on http://localhost:3000 and the backend on http://localhost:8000
 
 ## Get involved
 
