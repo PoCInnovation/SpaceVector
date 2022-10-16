@@ -27,6 +27,7 @@ const ResearchInput = styled("div")(() => ({
 }));
 
 const CustomInput = styled(Input)(() => ({
+  width: "100%",
   color: "#f86875",
 }));
 
