@@ -106,7 +106,7 @@ async def read_user_item(words: str):
 
     response = []
 
-    with open("data/elements_list.json", "r") as f:
+    with open("../data/elements_list.json", "r") as f:
         data = json.loads(f.read())
         for i in range(len(results[0])):
             for element in data:
