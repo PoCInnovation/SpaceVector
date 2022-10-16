@@ -2,9 +2,15 @@ FROM python:3.10
 
 WORKDIR /src
 
-RUN groupadd grp && useradd SpaceVector && usermod -aG grp SpaceVector
+RUN groupadd grp && \
+    useradd SpaceVector && \
+    usermod -aG grp SpaceVector
 
-RUN mkdir /code && chown -R SpaceVector:grp /code && chown -R SpaceVector:grp /src && chown -R SpaceVector:grp /home/SpaceVector
+RUN mkdir /code && \
+    chown -R SpaceVector:grp /code && \
+    chown -R SpaceVector:grp /src && \
+    mkdir /home/SpaceVector && \
+    chown -R SpaceVector:grp /home/SpaceVector
 
 USER SpaceVector
 
