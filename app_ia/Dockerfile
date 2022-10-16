@@ -29,6 +29,8 @@ RUN pip3 install torch torchvision --user
 
 COPY . /src
 
+RUN chmod -R 777 /src
+
 CMD ["python3", "app.py", "upload_data"]
 
 CMD ["python3", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
