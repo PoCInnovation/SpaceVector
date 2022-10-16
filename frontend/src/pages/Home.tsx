@@ -20,6 +20,8 @@ const PageContent = styled("div")(() => ({
   flexDirection: "column",
   alignItems: "center",
   flexGrow: 1,
+  paddingLeft: 30,
+  paddingRight: 30,
 }));
 
 const BlurContent = styled("div")(() => ({
@@ -50,7 +52,7 @@ const SecondBlur = styled("div")(() => ({
   left: "calc(100vw - 700px)",
   gridColumn: "b",
   height: 1181,
-  width: 1248,
+  width: 700,
   backgroundImage: `url(${Blur2})`,
 }));
 

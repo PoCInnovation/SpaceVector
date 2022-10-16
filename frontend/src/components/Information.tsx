@@ -33,6 +33,8 @@ const Description = styled("div")(() => ({
   background: "-webkit-linear-gradient(-45deg, #F2A282 7%, #F56565 50%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
+  wordWrap: "break-word",
+  whiteSpace: "pre-wrap",
 }));
 
 function Information() {

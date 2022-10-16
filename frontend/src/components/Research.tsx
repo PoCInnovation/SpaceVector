@@ -6,6 +6,9 @@ const ResearchContent = styled("div")(() => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  width: "100%",
+  paddingLeft: 30,
+  paddingRight: 30,
 }));
 
 const ResearchBar = styled("div")(() => ({
@@ -14,7 +17,9 @@ const ResearchBar = styled("div")(() => ({
   display: "flex",
   border: "2px solid #EF878F",
   borderRadius: 10,
-  width: 700,
+  maxWidth: 700,
+  width: "100%",
+  minWidth: 300,
   height: 45,
 }));
 
