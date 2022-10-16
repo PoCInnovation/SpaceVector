@@ -9,7 +9,7 @@ RUN python3 -m venv SpaceVector
 RUN ls -la SpaceVector
 RUN ls -la SpaceVector/bin
 
-RUN source ./SpaceVector/bin/activate.csh
+RUN source SpaceVector/bin/activate.fish
 
 RUN pip install --upgrade pip
 
