@@ -64,7 +64,6 @@ services:
     depends_on:
       - "backend"
 
-
 networks:
   default:
     name: milvus
