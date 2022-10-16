@@ -12,7 +12,7 @@ RUN mkdir /code && \
     mkdir /home/SpaceVector && \
     chown -R SpaceVector:grp /home/SpaceVector
 
-RUN chmod -R 777 /src
+RUN chmod -R 777 /src && chown -R SpaceVector:grp /src
 
 USER SpaceVector
 
