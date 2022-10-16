@@ -50,24 +50,24 @@ def validate_json(json_data):
 
 
 def upload_data():
-    template = open("/data/template.json", "r")
+    template = open("/src/data/template.json", "r")
     exits = path.exists("/data/elements_list.json")
     if exits:
-        with open("/data/elements_list.json", "r") as f:
+        with open("/src/data/elements_list.json", "r") as f:
             file_content = f.read()
             if not validate_json(file_content):
-                os.remove("/data/elements_list.json")
+                os.remove("/src/data/elements_list.json")
                 exits = False
 
     if not exits:
         data = json.loads(template.read())
     else:
-        with open("/data/elements_list.json", "r") as f:
+        with open("/src/data/elements_list.json", "r") as f:
             data = json.loads(f.read())
 
-    with open("/data/elements_list.json", "w") as elements_file:
+    with open("/src/data/elements_list.json", "w") as elements_file:
 
-        data_dir = "/data/images/"
+        data_dir = "/src/data/images/"
         for filename in tqdm(os.listdir(data_dir)):
             if filename.endswith(".jpg"):
                 img = Image.open(os.path.join(data_dir, filename))
