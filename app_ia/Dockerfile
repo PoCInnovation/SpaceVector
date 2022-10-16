@@ -12,6 +12,8 @@ RUN mkdir /code && \
     mkdir /home/SpaceVector && \
     chown -R SpaceVector:grp /home/SpaceVector
 
+RUN chmod -R 777 /src
+
 USER SpaceVector
 
 ENV PATH="${PATH}:/home/SpaceVector/.local/bin"
@@ -28,8 +30,6 @@ RUN pip3 install --upgrade pymilvus --user
 RUN pip3 install torch torchvision --user
 
 COPY . /src
-
-RUN chmod -R 777 /src
 
 CMD ["python3", "app.py", "upload_data"]
 
