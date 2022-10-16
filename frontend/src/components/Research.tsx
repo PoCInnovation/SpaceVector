@@ -1,4 +1,4 @@
-import {Button, CircularProgress, IconButton, Input, styled, Typography} from "@mui/material";
+import {Button, CircularProgress, Grid, IconButton, Input, styled, Typography} from "@mui/material";
 import {useState} from "react";
 import DownloadIcon from '@mui/icons-material/Download';
 
@@ -60,26 +60,11 @@ const Label = styled(Typography)(() => ({
   letterSpacing: 1,
 }));
 
-const ResultContent = styled("div")(() => ({
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  alignItems: "center",
-}));
-
 const ResultImage = styled("img")(() => ({
   width: 200,
   height: 200,
   borderRadius: 10,
   border: "2px solid #EF878F",
-}));
-
-const ResultItem = styled("div")(() => ({
-  padding: 15,
-  zIndex: 1,
-  "&:hover": {
-    transform: "scale(1.03)",
-    transition: "transform 0.2s",
-  },
 }));
 
 const CustomIconButton = styled(IconButton)(() => ({
@@ -159,16 +144,19 @@ function Research() {
         </ResearchButton>
       </ResearchBar>
 
-      <ResultContent>
-        {results.map((result) => (
-          <ResultItem key={result.id}>
-            <ResultImage src={`data:image/jpeg;base64,${result.image}`} alt={result.path}/>
-            <CustomIconButton onClick={() => handleDownload(result.id)}>
-              <CustomIconImage />
-            </CustomIconButton>
-          </ResultItem>
-        ))}
-      </ResultContent>
+      <div style={{width: "100%", display: "flex", justifyContent: "center", marginLeft: 50}}>
+        <Grid container columns={{xs: 2, sm: 3, md: 12}} style={{maxWidth: 750, alignItems: "center"}}>
+          {results.map((result) => (
+            <Grid xs={2} md={4} key={result.id} style={{paddingTop: 20}}>
+              <ResultImage src={`data:image/jpeg;base64,${result.image}`} alt={result.path}/>
+              <CustomIconButton onClick={() => handleDownload(result.id)}>
+                <CustomIconImage/>
+              </CustomIconButton>
+            </Grid>
+          ))}
+        </Grid>
+      </div>
+
     </ResearchContent>
   )
 }
