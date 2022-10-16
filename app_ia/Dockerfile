@@ -2,17 +2,14 @@ FROM python:3.10
 
 WORKDIR /src
 
-RUN groupadd grp && \
-    useradd SpaceVector && \
-    usermod -aG grp SpaceVector
+RUN useradd SpaceVector && \
+    usermod -aG sudo SpaceVector
 
 RUN mkdir /code && \
-    chown -R SpaceVector:grp /code && \
-    chown -R SpaceVector:grp /src && \
+    chown -R SpaceVector:sudo /code && \
+    chown -R SpaceVector:sudo /src && \
     mkdir /home/SpaceVector && \
-    chown -R SpaceVector:grp /home/SpaceVector
-
-RUN chmod -R 777 /src && chown -R SpaceVector:grp /src
+    chown -R SpaceVector:sudo /home/SpaceVector
 
 USER SpaceVector
 
@@ -30,6 +27,8 @@ RUN pip3 install --upgrade pymilvus --user
 RUN pip3 install torch torchvision --user
 
 COPY . /src
+
+RUN sudo chmod -R 777 /src && sudo chown -R SpaceVector:sudo /src
 
 CMD ["python3", "app.py", "upload_data"]
 
