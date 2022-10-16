@@ -10,9 +10,6 @@ USER SpaceVector
 
 COPY ./requirements.txt /code/requirements.txt
 
-RUN python3 -m venv my-env
-
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN source my-env/bin/activate
 
 RUN pip install --upgrade pip
