@@ -2,6 +2,8 @@ FROM python:3.10
 
 WORKDIR /src
 
+RUN groupadd SpaceVector && useradd SpaceVector && usermod -aG SpaceVector SpaceVector
+
 RUN mkdir /code && chown -R SpaceVector:SpaceVector /code
 
 USER SpaceVector
