@@ -97,7 +97,7 @@ function Research() {
 
   const handleSearch = () => {
     setLoading(true);
-    axios.get(`http://spacevector-server.laybraid.fr:8000/query/${inputValue}`)
+    axios.get(`https://spacevector-server.laybraid.fr/query/${inputValue}`)
       .then((response: any) => {
         console.log(response.data);
         setResults(response.data);
