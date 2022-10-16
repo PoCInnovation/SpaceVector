@@ -91,7 +91,7 @@ function Research() {
 
   const axios = require('axios');
 
-  const [inputValue, setInputValue] = useState("Your research...");
+  const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<{ id: string, path: string, image: string }[]>([]);
 
@@ -137,7 +137,7 @@ function Research() {
     <ResearchContent>
       <ResearchBar>
         <ResearchInput>
-          <CustomInput title="Your research..." defaultValue="Your research" value={inputValue}
+          <CustomInput title="Your research..." placeholder="Your research..." value={inputValue}
                        onChange={(e) => setInputValue(e.target.value)} disableUnderline/>
         </ResearchInput>
         <ResearchButton onClick={() => handleSearch()}>

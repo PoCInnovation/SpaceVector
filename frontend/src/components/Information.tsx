@@ -48,6 +48,9 @@ function Information() {
           <Description>
             SpaceVector is a PoC Innovation project mentored by Maxime Labonne.
           </Description>
+          <Description>
+            You can find the source code of the project on <a href="https://github.com/PoCInnovation/SpaceVector">Github</a>.
+          </Description>
         </GlobalDescription>
       </PageCard>
       <Blur/>
