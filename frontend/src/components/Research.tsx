@@ -144,7 +144,7 @@ function Research() {
         </ResearchButton>
       </ResearchBar>
 
-      <div style={{width: "100%", display: "flex", justifyContent: "center", marginLeft: 50}}>
+      <div style={{width: "100%", display: "flex", justifyContent: "center", marginLeft: 50, zIndex: 10}}>
         <Grid container columns={{xs: 2, sm: 3, md: 12}} style={{maxWidth: 750, alignItems: "center"}}>
           {results.map((result) => (
             <Grid xs={2} md={4} key={result.id} style={{paddingTop: 20}}>
