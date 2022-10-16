@@ -48,7 +48,7 @@ services:
     volumes:
       - .:/app_ia
     ports:
-      - "1212:1212"
+      - "8000:8000"
     depends_on:
       - "standalone"
       - "minio"
