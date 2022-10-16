@@ -2,7 +2,8 @@ FROM python:3.10
 
 WORKDIR /src
 
-RUN apt-get install sudo
+RUN echo "deb http://deb.debian.org/debian bullseye main contrib non-free" | tee -a /etc/apt/sources.list
+RUN apt-get update && apt-get install sudo -y
 
 RUN useradd SpaceVector && \
     usermod -aG sudo SpaceVector
