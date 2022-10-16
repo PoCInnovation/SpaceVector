@@ -1,15 +1,21 @@
-FROM node:16-alpine
+FROM node:16-alpine as builder
 
 WORKDIR /app
 
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
-RUN npm install -g serve
-
 COPY . .
 
+RUN npm install --silent
 RUN npm run build
 
-CMD ["serve", "-s", "build"]
+
+FROM nginx:1.21.0-alpine as production
+
+ENV NODE_ENV production
+
+COPY --from=builder /app/build /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 3000
+
+CMD ["nginx", "-g", "daemon off;"]
