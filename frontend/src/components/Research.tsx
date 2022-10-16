@@ -97,7 +97,7 @@ function Research() {
 
   const handleSearch = () => {
     setLoading(true);
-    axios.get(`http://localhost:1212/query/${inputValue}`)
+    axios.get(`http://localhost:8000/query/${inputValue}`)
       .then((response: any) => {
         console.log(response.data);
         setResults(response.data);
