@@ -2,6 +2,8 @@ FROM python:3.10
 
 WORKDIR /src
 
+RUN apt-get install sudo
+
 RUN useradd SpaceVector && \
     usermod -aG sudo SpaceVector
 
