@@ -5,6 +5,9 @@ WORKDIR /src
 COPY ./requirements.txt /code/requirements.txt
 
 RUN python3 -m venv SpaceVector
+
+RUN ls -la
+
 RUN source ~/envs/SpaceVector/bin/activate.csh
 
 RUN pip install --upgrade pip
