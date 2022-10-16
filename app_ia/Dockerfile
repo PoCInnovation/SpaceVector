@@ -4,6 +4,8 @@ WORKDIR /src
 
 COPY ./requirements.txt /code/requirements.txt
 
+ENV PATH /root/.local/.local/bin:${PATH}
+RUN pip install -r /home/app/web/$ENVTYPE.txt; mkdir /log;
 
 RUN pip install --upgrade pip
 RUN pip3 install jax --user
