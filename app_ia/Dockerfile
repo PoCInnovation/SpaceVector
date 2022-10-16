@@ -14,8 +14,9 @@ RUN mkdir /code && \
 
 USER SpaceVector
 
-COPY ./requirements.txt /code/requirements.txt
+ENV PATH="${PATH}:/home/SpaceVector/.local/bin"
 
+COPY ./requirements.txt /code/requirements.txt
 RUN pip3 install --upgrade pip
 
 RUN pip3 install --no-cache-dir --upgrade -r /code/requirements.txt --user
