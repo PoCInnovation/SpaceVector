@@ -5,8 +5,11 @@ WORKDIR /src
 RUN echo "deb http://deb.debian.org/debian bullseye main contrib non-free" | tee -a /etc/apt/sources.list
 RUN apt-get update && apt-get install sudo -y
 
-RUN useradd SpaceVector && \
+RUN useradd -ms /bin/bash SpaceVector && \
     usermod -aG sudo SpaceVector
+
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> \
+    /etc/sudoers
 
 RUN mkdir /code && \
     chown -R SpaceVector:sudo /code && \
