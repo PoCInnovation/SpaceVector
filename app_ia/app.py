@@ -50,24 +50,24 @@ def validate_json(json_data):
 
 
 def upload_data():
-    template = open("/src/app_ia/data/template.json", "r")
-    exits = path.exists("/src/app_ia/data/elements_list.json")
+    template = open("/app_ia/data/template.json", "r")
+    exits = path.exists("/app_ia/data/elements_list.json")
     if exits:
-        with open("/src/app_ia/data/elements_list.json", "r") as f:
+        with open("/app_ia/data/elements_list.json", "r") as f:
             file_content = f.read()
             if not validate_json(file_content):
-                os.remove("/src/app_ia/data/elements_list.json")
+                os.remove("/app_ia/data/elements_list.json")
                 exits = False
 
     if not exits:
         data = json.loads(template.read())
     else:
-        with open("/src/app_ia/data/elements_list.json", "r") as f:
+        with open("/app_ia/data/elements_list.json", "r") as f:
             data = json.loads(f.read())
 
-    with open("/src/app_ia/data/elements_list.json", "w") as elements_file:
+    with open("/app_ia/data/elements_list.json", "w") as elements_file:
 
-        data_dir = "/src/app_ia/data/images/"
+        data_dir = "/app_ia/data/images/"
         for filename in tqdm(os.listdir(data_dir)):
             if filename.endswith(".jpg"):
                 img = Image.open(os.path.join(data_dir, filename))
@@ -106,7 +106,7 @@ async def read_user_item(words: str):
 
     response = []
 
-    with open("../data/elements_list.json", "r") as f:
+    with open("/app_ia/data/elements_list.json", "r") as f:
         data = json.loads(f.read())
         for i in range(len(results[0])):
             for element in data:
