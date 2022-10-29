@@ -46,7 +46,7 @@ services:
     container_name: backend
     image: spacevector-back:prod
     volumes:
-      - ./data:/app_ia/data
+      - ./src/data:/app_ia/data
     ports:
       - "8000:8000"
     depends_on:
