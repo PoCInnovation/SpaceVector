@@ -67,7 +67,7 @@ def upload_data():
 
     with open("/src/data/elements_list.json", "w") as elements_file:
 
-        data_dir = "/app_ia/data/images/"
+        data_dir = "/src/data/images/"
         for filename in tqdm(os.listdir(data_dir)):
             if filename.endswith(".jpg"):
                 img = Image.open(os.path.join(data_dir, filename))
