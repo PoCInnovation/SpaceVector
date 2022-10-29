@@ -33,6 +33,7 @@ RUN pip3 install torch torchvision --user
 COPY . /src
 
 RUN sudo chmod -R 777 /src && sudo chown -R SpaceVector:sudo /src
+RUN sudo chmod -R 777 /app_ia && sudo chown -R SpaceVector:sudo /app_ia
 
 CMD ["python3", "app.py", "upload_data"]
 
