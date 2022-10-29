@@ -65,13 +65,22 @@ def upload_data():
         with open("/src/data/elements_list.json", "r") as f:
             data = json.loads(f.read())
 
-    with open("/src/data/elements_list.json", "w") as elements_file:
+    with open("/src/data/elements_list.json", "r") as elements_file:
 
         data_dir = "/src/data/images/"
         for filename in tqdm(os.listdir(data_dir)):
             if filename.endswith(".jpg"):
-                img = Image.open(os.path.join(data_dir, filename))
-                input_ids = processor(text=None, images=img, return_tensors="pt", padding=True)
+                try:
+                    img = Image.open(os.path.join(data_dir, filename))
+                except:
+                    print("Error opening file: " + filename)
+                    continue
+
+                try:
+                    input_ids = processor(text=None, images=img, return_tensors="pt", padding=True)
+                except:
+                    print("Error processing file: " + filename)
+                    continue
                 img = model.get_image_features(**input_ids)
                 img = np.array(img.detach())
                 img = img.reshape(1, -1)
@@ -93,7 +102,6 @@ search_params = {"metric_type": "L2", "params": {"nprobe": 10}}
 
 @app.get("/query/{words}", response_model=list)
 async def read_user_item(words: str):
-
     print(f"Query: {words}")
 
     inputs = processor(text=words, images=None, return_tensors="pt", padding=True)
