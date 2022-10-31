@@ -102,6 +102,9 @@ search_params = {"metric_type": "L2", "params": {"nprobe": 10}}
 
 @app.get("/query/{words}", response_model=list)
 async def read_user_item(words: str):
+
+    print("\n\nQuerying...")
+
     print(f"Query: {words}")
 
     inputs = processor(text=words, images=None, return_tensors="pt", padding=True)
@@ -113,6 +116,8 @@ async def read_user_item(words: str):
     results = collection.search(data=vector, anns_field="vector", param=search_params, limit=9)
 
     response = []
+
+    print("Search results...")
 
     with open("/src/data/elements_list.json", "r") as f:
         data = json.loads(f.read())
