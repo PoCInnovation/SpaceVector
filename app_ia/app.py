@@ -65,7 +65,7 @@ def upload_data():
         with open("/src/data/elements_list.json", "r") as f:
             data = json.loads(f.read())
 
-    with open("/src/data/elements_list.json", "r") as elements_file:
+    with open("/src/data/elements_list.json", "w") as elements_file:
 
         data_dir = "/src/data/images/"
         for filename in tqdm(os.listdir(data_dir)):
